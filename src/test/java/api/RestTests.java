@@ -46,7 +46,7 @@ public class RestTests {
     }
 
     @Test
-    public void testSearchBox() {
+    public void testSearchBoxWithEmptyData() {
         String endpoint = "https://www.marko.by/";
         String searchObject = "";
         given()
@@ -59,9 +59,21 @@ public class RestTests {
     }
 
     @Test
-    public void testSearchSomeItem() {
+    public void testSearchBoxWithSomeItem() {
         String endpoint = "https://www.marko.by/";
         String searchObject = "туфли";
+        given()
+                .header("Content-type", "text/html; charset=UTF-8")
+                .queryParam("q", searchObject)
+                .when()
+                .get(endpoint)
+                .then()
+                .log().body();
+    }
+    @Test
+    public void testSearchBoxWithInvalidData() {
+        String endpoint = "https://www.marko.by/";
+        String searchObject = "@/--//--";
         given()
                 .header("Content-type", "text/html; charset=UTF-8")
                 .queryParam("q", searchObject)
