@@ -5,24 +5,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AuthorizationFormPage {
-    WebDriver driver;
+public class AuthorizationFormPage extends BasePage {
 
     @FindBy(xpath = "//*[@name='login']")
     private WebElement inputPhoneNumber;
     @FindBy(xpath = "//*[@name='password']")
     private WebElement inputPassword;
-    @FindBy(xpath = "//button[@type='button' and text()='Войти']")
+    @FindBy(xpath = "//button[contains(@class,'button_red')]")
     private WebElement buttonSubmit;
     @FindBy(xpath = "//*[@class='breadcrumbs__item' and text()='Личный кабинет']")
     private WebElement personalOfficePage;
+    @FindBy(xpath = "//a[@href='/out.php?to=/personal/']")
+    private WebElement buttonExit;
+    @FindBy(xpath = "//p[contains(@class,'error')]")
+    private WebElement errorMessage;
 
     public AuthorizationFormPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     @Description("Заполнением поле 'Телефон'")
     public AuthorizationFormPage fillPhoneNumberForm(String phoneNumber) {
+        inputPhoneNumber.click();
         inputPhoneNumber.sendKeys(phoneNumber);
         return this;
     }
@@ -40,8 +44,30 @@ public class AuthorizationFormPage {
     }
 
     @Description("Отбражается страница 'Личный кабинет'")
-    public AuthorizationFormPage isPersonalOfficePageDisplayed() {
-        personalOfficePage.isDisplayed();
+    public boolean isPersonalOfficePageDisplayed() {
+        return personalOfficePage.isDisplayed();
+    }
+
+    @Description("Нажимаем на кнопку 'Выход'")
+    public AuthorizationFormPage clickButtonExit() {
+        buttonExit.click();
+        return this;
+    }
+
+    @Description("Получаем текст об ошибке")
+    public String getErrorMessage(){
+       return errorMessage.getText();
+    }
+
+    @Description("Удаляем данные из полей")
+    public AuthorizationFormPage clearPhoneNumber(){
+        inputPhoneNumber.clear();
+        return this;
+    }
+
+    @Description("Удаляем данные из полей")
+    public AuthorizationFormPage clearPassword(){
+        inputPassword.clear();
         return this;
     }
 }

@@ -8,6 +8,10 @@ public class Utils {
         String password = faker.internet().password();
         return password;
     }
+    public static String generatePhone() {
+        String phone = faker.phoneNumber().phoneNumber();
+        return phone;
+    }
 
     public static String generatePhoneNumber() {
         String str = "1234567890";
@@ -54,20 +58,5 @@ public class Utils {
             firstPhoneNumber = elements[j];
         }
         return firstPhoneNumber;
-    }
-    public enum RegisteredUser {
-        USER_PHONE_NUMBER("295109319"),
-        USER_PASSWORD("Katerina1993510");
-
-        private String userData;
-
-        RegisteredUser(String userData) {
-            this.userData = userData;
-        }
-
-        @Override
-        public String toString() {
-            return userData;
-        }
     }
 }

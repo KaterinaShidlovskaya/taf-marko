@@ -11,7 +11,6 @@ public class SearchRequests {
     private static SearchRequests instance;
 
     private SearchRequests() {
-
     }
 
     public static SearchRequests getInstance() {
