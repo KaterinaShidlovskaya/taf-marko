@@ -14,9 +14,8 @@ public class DriverSingleton {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            ChromeOptions options=new ChromeOptions();
-            options.addArguments("headless");
-            driver=new ChromeDriver(options);
+
+            driver=new ChromeDriver();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
             driver.manage().window().maximize();
         }

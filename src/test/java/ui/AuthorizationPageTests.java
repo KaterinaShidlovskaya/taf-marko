@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import ui.utils.Utils;
 
 import static ui.constants.ConstantData.REGISTERED_PHONE_NUMBER;
@@ -84,5 +85,10 @@ public class AuthorizationPageTests extends BaseUITest {
                 .fillPasswordForm(Utils.generatePassword())
                 .clickButtonSubmit();
         Assertions.assertEquals(INCORRECT_PHONE_NUMBER_OR_PASSWORD, authorizationFormPage.getErrorMessage());
+    }
+
+    @AfterEach
+    public void setAfterEach(){
+        authorizationFormPage.clearPhoneNumber().clearPassword();
     }
 }

@@ -8,10 +8,6 @@ public class Utils {
         String password = faker.internet().password();
         return password;
     }
-    public static String generatePhone() {
-        String phone = faker.phoneNumber().phoneNumber();
-        return phone;
-    }
 
     public static String generatePhoneNumber() {
         String str = "1234567890";
